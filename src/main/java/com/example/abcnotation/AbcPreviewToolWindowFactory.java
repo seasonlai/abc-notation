@@ -75,15 +75,15 @@ public class AbcPreviewToolWindowFactory implements ToolWindowFactory {
 
         Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
         if (editor == null) {
-            showWarnTips(project, "editor为空", "......");
+            showWarnTips(project, "editor为空", "");
             return;
         }
 
         Document document = editor.getDocument();
-//        VirtualFile file = FileDocumentManager.getInstance().getFile(document);
-        VirtualFile file = editor.getVirtualFile();
+        VirtualFile file = FileDocumentManager.getInstance().getFile(document);
+//        VirtualFile file = editor.getVirtualFile();
         if (file == null || !"abc".equalsIgnoreCase(file.getExtension())) {
-            showWarnTips(project, "文件为空或不是abc文件", "......");
+            showWarnTips(project, "文件为空或不是abc文件", "");
             return;
         }
 
@@ -129,7 +129,7 @@ public class AbcPreviewToolWindowFactory implements ToolWindowFactory {
     private static void showTips(@NotNull Project project, String title, String msg, NotificationType notificationType) {
         // 显示通知提示用户
         Notification notification = new Notification(
-                "ABC NOTATION",
+                "ABC NOTATION MESSAGE",
                 title,
                 msg,
                 notificationType
